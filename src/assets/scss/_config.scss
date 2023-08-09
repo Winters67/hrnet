@@ -1,0 +1,30 @@
+@font-face {
+  font-family: "Medium";
+  src: local("Montserrat-Medium"),
+    url("../../assets/font/Montserrat-Medium.ttf") format("truetype");
+}
+
+/*|---------------| App Color Schema|---------------*/
+
+$primary: #ff6060;
+$secondary: #f6f6f6;
+$dark: #000000;
+
+
+
+// /*|---------------| @media #{$BREAKPOINT-DESK}|---------------*/
+
+$BREAKPOINT-DESK: "only screen and (max-width : 1200px)";
+$BREAKPOINT-TABLETS: "only screen and (max-width : 768px)";
+$BREAKPOINT-MOBILE: "only screen and (max-width : 480px)";
+
+/*|---------------|MIXINS|---------------*/
+
+@mixin button {
+  padding-left: 18.8px;
+  border-radius: 5px;
+  font-size: 24px;
+  font-weight: 500;
+  color: $secondary;
+  background-color: #ff6060;
+  }

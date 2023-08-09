@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "Medium";
+  src: local("Montserrat-Medium"), url("../../assets/font/Montserrat-Medium.ttf") format("truetype");
+}
+/*|---------------| App Color Schema|---------------*/
+/*|---------------|MIXINS|---------------*/
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Medium";
+}/*# sourceMappingURL=Main.css.map */
