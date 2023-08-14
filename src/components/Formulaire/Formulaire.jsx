@@ -54,6 +54,9 @@ function EmployeeForm() {
             name = e.target.name;
             value = e.target.value;
         }
+        if (value instanceof Date) {
+            value = `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, '0')}-${String(value.getDate()).padStart(2, '0')}`;
+        }
 
         dispatch({
             type: 'UPDATE_FIELD',
@@ -103,18 +106,20 @@ function EmployeeForm() {
                 />
 
                 <DatePicker
-                    selected={state.dateOfBirth}
+                    selected={state.dateOfBirth ? new Date(state.dateOfBirth) : null}
                     onChange={date => handleChange({ target: { name: "dateOfBirth", value: date } })}
-                    dateFormat="dd/MM/yyyy"
+                    dateFormat="yyyy-MM-dd"
                     customInput={<InputField label="Date of Birth" />}
                 />
 
                 <DatePicker
-                    selected={state.startDate}
+                    selected={state.startDate ? new Date(state.startDate) : null}
                     onChange={date => handleChange({ target: { name: "startDate", value: date } })}
-                    dateFormat="dd/MM/yyyy"
+                    dateFormat="yyyy-MM-dd"
                     customInput={<InputField label="Start Date" />}
                 />
+
+
 
                 <fieldset className="address">
                     <legend>Address</legend>
