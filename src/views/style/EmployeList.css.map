@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"EmployeList.css"}
+{"version":3,"sources":["../EmployeList/EmployeList.scss","EmployeList.css"],"names":[],"mappings":"AAAA;EACI,kBAAA;EACA,mBAAA;ACCJ","file":"EmployeList.css"}

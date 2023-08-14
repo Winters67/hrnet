@@ -1,7 +1,17 @@
 import React, { useReducer } from 'react';
 import { addEmployee } from '../../reducers/employeesReducer';
 import { useDispatch } from 'react-redux';
+import { states } from '../../data/data';
+import './Formulaire.scss';
+import InputField from '../InputField/InputField';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
+
+
+// console.log(states)
 
 const initialState = {
     firstName: '',
@@ -14,6 +24,7 @@ const initialState = {
     zipCode: '',
     department: 'Sales',
 };
+
 
 
 const formReducer = (state, action) => {
@@ -33,7 +44,17 @@ function EmployeeForm() {
     const reduxDispatch = useDispatch();
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        let name, value;
+
+        // Si c'est un événement de react-dropdown
+        if (e.value && e.label) {
+            name = 'state';
+            value = e.value;
+        } else {
+            name = e.target.name;
+            value = e.target.value;
+        }
+
         dispatch({
             type: 'UPDATE_FIELD',
             field: name,
@@ -46,48 +67,104 @@ function EmployeeForm() {
         reduxDispatch(addEmployee(state));
     };
 
+
+    const options = states.map(s => ({ value: s.abbreviation, label: s.name }));
+
+    const departmentOptions = [
+        { value: 'Sales', label: 'Sales' },
+        { value: 'Marketing', label: 'Marketing' },
+        { value: 'Engineering', label: 'Engineering' },
+        { value: 'Human Resources', label: 'Human Resources' },
+        { value: 'Legal', label: 'Legal' }
+    ];
+
+
     return (
         <div className="container">
-            <h2>Create Employee</h2>
-            <form id="create-employee" onSubmit={(e) => e.preventDefault()}>
-                <label htmlFor="firstName">First Name</label>
-                <input type="text" name="firstName" value={state.firstName} onChange={handleChange} />
+            <div className='titleCreate'>
 
-                <label htmlFor="lastName">Last Name</label>
-                <input type="text" name="lastName" value={state.lastName} onChange={handleChange} />
+                <h1>Create Employee</h1>
+                <h2>Create Employee</h2>
+            </div>
 
-                <label htmlFor="dateOfBirth">Date of Birth</label>
-                <input type="text" name="dateOfBirth" value={state.dateOfBirth} onChange={handleChange} />
+            <form id="create-employeec" onSubmit={(e) => e.preventDefault()}>
+                <InputField
+                    name="firstName"
+                    value={state.firstName}
+                    onChange={handleChange}
+                    label="First Name"
+                />
 
-                <label htmlFor="startDate">Start Date</label>
-                <input type="text" name="startDate" value={state.startDate} onChange={handleChange} />
+                <InputField
+                    name="lastName"
+                    value={state.lastName}
+                    onChange={handleChange}
+                    label="Last Name"
+                />
+
+                <DatePicker
+                    selected={state.dateOfBirth}
+                    onChange={date => handleChange({ target: { name: "dateOfBirth", value: date } })}
+                    dateFormat="dd/MM/yyyy"
+                    customInput={<InputField label="Date of Birth" />}
+                />
+
+                <DatePicker
+                    selected={state.startDate}
+                    onChange={date => handleChange({ target: { name: "startDate", value: date } })}
+                    dateFormat="dd/MM/yyyy"
+                    customInput={<InputField label="Start Date" />}
+                />
 
                 <fieldset className="address">
                     <legend>Address</legend>
 
-                    <label htmlFor="street">Street</label>
-                    <input type="text" name="street" value={state.street} onChange={handleChange} />
+                    <InputField
+                        name="street"
+                        value={state.street}
+                        onChange={handleChange}
+                        label="Street"
+                    />
 
-                    <label htmlFor="city">City</label>
-                    <input type="text" name="city" value={state.city} onChange={handleChange} />
+                    <InputField
+                        name="city"
+                        value={state.city}
+                        onChange={handleChange}
+                        label="City"
+                    />
+                    <div className='dropdown'>
+                        <label htmlFor="state">State</label>
+                        <Dropdown
+                            options={options}
+                            onChange={handleChange}
+                            value={state.state}
+                            placeholder="Select a state"
+                        />
+                    </div>
 
-                    <label htmlFor="state">State</label>
-                    <input type="text" name="state" value={state.state} onChange={handleChange} />
 
-                    <label htmlFor="zipCode">Zip Code</label>
-                    <input type="text" name="zipCode" value={state.zipCode} onChange={handleChange} />
+
+
+                    <InputField
+                        name="zipCode"
+                        value={state.zipCode}
+                        onChange={handleChange}
+                        label="Zip Code"
+
+                    />
                 </fieldset>
 
                 <label htmlFor="department">Department</label>
-                <select name="department" value={state.department} onChange={handleChange}>
-                    <option>Sales</option>
-                    <option>Marketing</option>
-                    <option>Engineering</option>
-                    <option>Human Resources</option>
-                    <option>Legal</option>
-                </select>
+                <Dropdown
+                    options={departmentOptions}
+                    onChange={handleChange}
+                    value={state.department}
+                    placeholder="Select a department"
+                />
 
-                <button type="button" onClick={saveEmployee}>Save</button>
+
+
+                <button className='buttonSave' type="button" onClick={saveEmployee}>Save</button>
             </form>
         </div>
     );

@@ -4,42 +4,21 @@
 }
 /*|---------------| App Color Schema|---------------*/
 /*|---------------|MIXINS|---------------*/
-* {
-  margin: 0;
-  padding: 0;
-  outline: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Medium";
-  background-color: #e8e8e8;
-}
-
-a {
-  text-decoration: none;
-}
-
-@font-face {
-  font-family: "Medium";
-  src: local("Montserrat-Medium"), url("../../assets/font/Montserrat-Medium.ttf") format("truetype");
-}
-/*|---------------| App Color Schema|---------------*/
-/*|---------------|MIXINS|---------------*/
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 5px;
 }
-.container h1 {
+.container .titleCreate h1 {
   color: whitesmoke;
   position: absolute;
   font-size: 30px;
   left: 8%;
   top: 23%;
+  writing-mode: vertical-rl;
 }
-.container h2 {
+.container .titleCreate h2 {
   color: #484848;
   position: absolute;
   left: 5%;
@@ -141,55 +120,4 @@ fieldset {
 
 .dropdown {
   margin: 0px 0px 30px 0px;
-}
-
-@font-face {
-  font-family: "Medium";
-  src: local("Montserrat-Medium"), url("../../assets/font/Montserrat-Medium.ttf") format("truetype");
-}
-/*|---------------| App Color Schema|---------------*/
-/*|---------------|MIXINS|---------------*/
-.containerHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-.containerHeader a {
-  margin: 10px;
-}
-
-img {
-  width: 100px;
-  height: auto;
-  border-radius: 20px;
-}
-
-.navButton {
-  padding: 5px 30px;
-  border: unset;
-  border-radius: 15px;
-  color: #e8e8e8;
-  z-index: 1;
-  background: #494949;
-  position: relative;
-  font-weight: 1000;
-  font-size: 17px;
-  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-  transition: all 250ms;
-  overflow: hidden;
-}
-
-.noActive {
-  padding: 5px 30px;
-  border: unset;
-  border-radius: 15px;
-  color: #212121;
-  z-index: 1;
-  background: #e8e8e8;
-  position: relative;
-  font-weight: 1000;
-  font-size: 17px;
-  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-  transition: all 250ms;
-  overflow: hidden;
-}/*# sourceMappingURL=Main.css.map */
+}/*# sourceMappingURL=Formulaire.css.map */

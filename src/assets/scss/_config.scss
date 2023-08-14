@@ -6,11 +6,9 @@
 
 /*|---------------| App Color Schema|---------------*/
 
-$primary: #ff6060;
-$secondary: #f6f6f6;
-$dark: #000000;
-
-
+$primary: #484848;
+// $secondary: #f6f6f6;
+// $dark: #000000;
 
 // /*|---------------| @media #{$BREAKPOINT-DESK}|---------------*/
 
@@ -20,11 +18,100 @@ $BREAKPOINT-MOBILE: "only screen and (max-width : 480px)";
 
 /*|---------------|MIXINS|---------------*/
 
-@mixin button {
-  padding-left: 18.8px;
-  border-radius: 5px;
-  font-size: 24px;
-  font-weight: 500;
-  color: $secondary;
-  background-color: #ff6060;
-  }
+@mixin cellContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: relative;
+  color: $primary;
+}
+
+@mixin cellContainerLabel {
+  font-size: 15px;
+  padding-left: 10px;
+  position: absolute;
+  top: 13px;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+@mixin cellInput {
+  width: 200px;
+  height: 45px;
+  border: none;
+  outline: none;
+  padding: 0px 7px;
+  border-radius: 6px;
+  color: $primary;
+  font-size: 15px;
+  background-color: transparent;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+    -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
+
+@mixin cellInputFocus {
+  border: 2px solid transparent;
+  color: $primary;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+    -1px -1px 6px rgba(255, 255, 255, 0.4), inset 3px 3px 10px rgba(0, 0, 0, 1),
+    inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
+
+@mixin cellInputTransition {
+  transition: 0.3s;
+  padding-left: 2px;
+  transform: translateY(-35px);
+}
+
+@mixin cellInputBoxshadow {
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+    -1px -1px 6px rgba(255, 255, 255, 0.4), inset 3px 3px 10px rgba(0, 0, 0, 1),
+    inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
+
+@mixin buttonSave {
+  padding: 5px 30px;
+  border: unset;
+  border-radius: 15px;
+  color: #212121;
+  z-index: 1;
+  background: #e8e8e8;
+  position: relative;
+  font-weight: 1000;
+  font-size: 17px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+  overflow: hidden;
+}
+
+@mixin buttonBefore {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  background-color: #494949;
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+}
+
+@mixin buttonSelect {
+  padding: 5px 30px;
+  border: unset;
+  border-radius: 15px;
+  color: #e8e8e8;
+  z-index: 1;
+  background: #494949;
+  position: relative;
+  font-weight: 1000;
+  font-size: 17px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+  overflow: hidden;
+}

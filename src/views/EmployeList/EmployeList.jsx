@@ -1,45 +1,63 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useTable } from 'react-table';
 
 function EmployeeList() {
     const employees = useSelector(state => state.employees.list);
-    console.log(employees)
+    console.log(employees);
+
+    const columns = React.useMemo(
+        () => [
+            { Header: 'First Name', accessor: 'firstName' },
+            { Header: 'Last Name', accessor: 'lastName' },
+            { Header: 'Start Date', accessor: 'startDate' },
+            { Header: 'Department', accessor: 'department' },
+            { Header: 'Date of Birth', accessor: 'dateOfBirth' },
+            { Header: 'Street', accessor: 'street' },
+            { Header: 'City', accessor: 'city' },
+            { Header: 'State', accessor: 'state' },
+            { Header: 'Zip Code', accessor: 'zipCode' },
+        ],
+        []
+    );
+
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow,
+    } = useTable({ columns, data: employees });
 
     return (
         <div id="employee-div" className="container">
-            <h1>Current Employees</h1>
-            <table id="employee-table" className="display">
+            <div className='TitleEmployees'>
+                <h1>Current Employee</h1>
+            </div>
+            
+            <table {...getTableProps()} className="display">
                 <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Start Date</th>
-                        <th>Department</th>
-                        <th>Date of Birth</th>
-                        <th>Street</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Zip Code</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {employees.map(employee => (
-                        <tr key={employee.firstName + employee.lastName}>
-                            <td>{employee.firstName}</td>
-                            <td>{employee.lastName}</td>
-                            <td>{employee.startDate}</td>
-                            <td>{employee.department}</td>
-                            <td>{employee.dateOfBirth}</td>
-                            <td>{employee.street}</td>
-                            <td>{employee.city}</td>
-                            <td>{employee.state}</td>
-                            <td>{employee.zipCode}</td>
+                    {headerGroups.map(headerGroup => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map(column => (
+                                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                            ))}
                         </tr>
                     ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                    {rows.map(row => {
+                        prepareRow(row);
+                        return (
+                            <tr {...row.getRowProps()}>
+                                {row.cells.map(cell => (
+                                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                ))}
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
-            <Link to="/"> Home</Link>
         </div>
     );
 }

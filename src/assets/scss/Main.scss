@@ -4,9 +4,9 @@
 @import "../scss/global.scss";
 
 //components
-// @import "../../components/Footer/Footer.scss";
-
+@import "../../components/Formulaire/Formulaire.scss";
+@import "../../components/Header/Header.scss";
 
 //pages
-// @import "../../views/Home/Home.scss";
-
+@import "../../views/Home/Home.scss";
+@import "../../views/EmployeList/EmployeList.scss";
