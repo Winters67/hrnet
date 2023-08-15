@@ -1,1 +1,1 @@
-{"version":3,"sources":["../EmployeList/EmployeList.scss","EmployeList.css"],"names":[],"mappings":"AAAA;EACI,kBAAA;EACA,mBAAA;ACCJ","file":"EmployeList.css"}
+{"version":3,"sources":["../../assets/scss/_config.scss","EmployeList.css","../EmployeList/EmployeList.scss"],"names":[],"mappings":"AAAA;EACE,qBAAA;EACA,kGAAA;ACCF;ADGA,qDAAA;AAYA,0CAAA;AEhBA;EACE,mBAAA;ADKF;ACJE;EACE,iBAAA;EAEA,eAAA;EACA,QAAA;EACA,QAAA;ADKJ;ACFE;EACE,cFLM;EEMN,QAAA;EACA,QAAA;ADIJ;;ACAA;EACE,gBAAA;ADGF;ACDE;EACE,WAAA;ADGJ;ACDI;EACE;;;;;;;;IAQE,aAAA;EDGN;AACF","file":"EmployeList.css"}

@@ -1,4 +1,39 @@
+@font-face {
+  font-family: "Medium";
+  src: local("Montserrat-Medium"), url("../../assets/font/Montserrat-Medium.ttf") format("truetype");
+}
+/*|---------------| App Color Schema|---------------*/
+/*|---------------|MIXINS|---------------*/
 .TitleEmployees {
-  position: relative;
   margin-bottom: 20px;
+}
+.TitleEmployees h1 {
+  color: whitesmoke;
+  font-size: 30px;
+  left: 8%;
+  top: 23%;
+}
+.TitleEmployees h2 {
+  color: #484848;
+  left: 5%;
+  top: 20%;
+}
+
+#employee-div {
+  overflow-x: auto;
+}
+#employee-div .myMaterialTable {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  #employee-div .myMaterialTable td:nth-child(6),
+  #employee-div .myMaterialTable th:nth-child(6),
+  #employee-div .myMaterialTable td:nth-child(7),
+  #employee-div .myMaterialTable th:nth-child(7),
+  #employee-div .myMaterialTable td:nth-child(8),
+  #employee-div .myMaterialTable th:nth-child(8),
+  #employee-div .myMaterialTable td:nth-child(9),
+  #employee-div .myMaterialTable th:nth-child(9) {
+    display: none;
+  }
 }/*# sourceMappingURL=EmployeList.css.map */

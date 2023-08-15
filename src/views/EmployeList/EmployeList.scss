@@ -1,17 +1,40 @@
-.TitleEmployees {
-    margin-bottom: 20px;
-    h1 {
-      color: whitesmoke;
-    
-      font-size: 30px;
-      left: 8%;
-      top: 23%;
-   
-    }
+@import "../../assets/scss/config";
 
-    h2 {
-      color: $primary;
-      left: 5%;
-      top: 20%;
-    }
+.TitleEmployees {
+  margin-bottom: 20px;
+  h1 {
+    color: whitesmoke;
+
+    font-size: 30px;
+    left: 8%;
+    top: 23%;
   }
+
+  h2 {
+    color: $primary;
+    left: 5%;
+    top: 20%;
+  }
+}
+
+#employee-div {
+  overflow-x: auto;
+
+  .centeredHeader th {
+    text-align: center;
+}
+
+.myMaterialTable {
+    width: 100%;
+    
+    th, td {
+        // Réduire la largeur des colonnes par défaut
+        min-width: 100px;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+  
+}
+}

@@ -8,7 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 // console.log(states)
@@ -43,6 +43,8 @@ function EmployeeForm() {
     const [state, dispatch] = useReducer(formReducer, initialState);
     const reduxDispatch = useDispatch();
 
+
+
     const handleChange = (e) => {
         let name, value;
 
@@ -67,9 +69,14 @@ function EmployeeForm() {
 
     const saveEmployee = () => {
         console.log(state);
-        reduxDispatch(addEmployee(state));
-    };
 
+        const employeeWithId = {
+            ...state,
+            id: uuidv4()
+        };
+
+        reduxDispatch(addEmployee(employeeWithId));
+    };
 
     const options = states.map(s => ({ value: s.abbreviation, label: s.name }));
 
@@ -158,7 +165,7 @@ function EmployeeForm() {
 
                     />
                 </fieldset>
-
+                <div className='dropdown'>
                 <label htmlFor="department">Department</label>
                 <Dropdown
                     options={departmentOptions}
@@ -166,6 +173,7 @@ function EmployeeForm() {
                     value={state.department}
                     placeholder="Select a department"
                 />
+                </div>
 
 
 

@@ -4,12 +4,14 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin: 20px;
   a {
     margin: 10px;
   }
 }
 img {
-  width: 100px;
+  position: absolute;
+  width: 150px;
   height: auto;
   border-radius: 20px;
 }

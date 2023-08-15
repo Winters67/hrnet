@@ -36,6 +36,7 @@ $BREAKPOINT-MOBILE: "only screen and (max-width : 480px)";
 }
 
 @mixin cellInput {
+  cursor: pointer;
   width: 200px;
   height: 45px;
   border: none;
@@ -83,6 +84,7 @@ $BREAKPOINT-MOBILE: "only screen and (max-width : 480px)";
   box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
   transition: all 250ms;
   overflow: hidden;
+  cursor: pointer;
 }
 
 @mixin buttonBefore {

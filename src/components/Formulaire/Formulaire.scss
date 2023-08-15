@@ -89,4 +89,33 @@ fieldset {
 }
 .dropdown {
   margin: 0px 0px 30px 0px;
+  @include cellInput;
+  .Dropdown-control {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+}
+.Dropdown-option.is-selected {
+  background-color: #f2f9fc;
+  color: #ae1515;
+}
+
+.Dropdown-option:hover {
+  background-color: #f2f9fc;
+  color: #ae1515;
+}
+.Dropdown-menu {
+  background-color: #e8e8e8;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  margin-top: -1px;
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 1000;
+  -webkit-overflow-scrolling: touch;
 }

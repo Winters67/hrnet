@@ -1,9 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { MaterialReactTable } from 'material-react-table';
+import { MenuItem } from '@mui/material';
+import { deleteEmployee } from '../../reducers/employeesReducer';
+import "./EmployeList.scss"
 
 function EmployeeList() {
+    const dispatch = useDispatch();
     const employees = useSelector(state => state.employees.list);
+
+    const handleDelete = (employeeId) => {
+        dispatch(deleteEmployee(employeeId));
+        console.info('Deleted employee with ID:', employeeId);
+    };
 
     // Définir les colonnes
     const columns = React.useMemo(
@@ -28,7 +37,21 @@ function EmployeeList() {
                 <h2>Current Employee</h2>
             </div>
 
-            <MaterialReactTable columns={columns} data={employees} />
+            <MaterialReactTable
+                className="myMaterialTable centeredHeader"
+                columns={columns}
+                data={employees}
+                defaultColumn={{
+                    minSize: 20, 
+                    maxSize: 100, 
+                }}
+                enableRowActions
+                renderRowActionMenuItems={({ row }) => [
+                    <MenuItem key="delete" onClick={() => handleDelete(row.id)}>
+                        Delete
+                    </MenuItem>,
+                ]}
+            />
         </div>
     );
 }
