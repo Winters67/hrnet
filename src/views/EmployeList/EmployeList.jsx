@@ -8,10 +8,12 @@ import "./EmployeList.scss"
 function EmployeeList() {
     const dispatch = useDispatch();
     const employees = useSelector(state => state.employees.list);
+    console.log(employees)
 
     const handleDelete = (employeeId) => {
-        dispatch(deleteEmployee(employeeId));
+        dispatch(deleteEmployee({ id: employeeId }));
         console.info('Deleted employee with ID:', employeeId);
+        console.log(employeeId)
     };
 
     // Définir les colonnes
@@ -42,15 +44,19 @@ function EmployeeList() {
                 columns={columns}
                 data={employees}
                 defaultColumn={{
-                    minSize: 20, 
-                    maxSize: 100, 
+                    minSize: 20,
+                    maxSize: 100,
                 }}
                 enableRowActions
                 renderRowActionMenuItems={({ row }) => [
-                    <MenuItem key="delete" onClick={() => handleDelete(row.id)}>
+                    <MenuItem key="delete" onClick={() => {
+                        console.log(row.original); // Print the 'original' object to see its structure
+                        handleDelete(row.original.id);
+                    }}>
                         Delete
-                    </MenuItem>,
+                    </MenuItem>
                 ]}
+
             />
         </div>
     );

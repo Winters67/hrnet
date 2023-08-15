@@ -74,6 +74,7 @@ function EmployeeForm() {
             ...state,
             id: uuidv4()
         };
+        console.log(employeeWithId)
 
         reduxDispatch(addEmployee(employeeWithId));
     };

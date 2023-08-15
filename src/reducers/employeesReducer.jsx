@@ -14,15 +14,15 @@ const employeesSlice = createSlice({
         addEmployee: (state, action) => {
             state.list.push(action.payload);
         },
-        clearEmployees: state => {
-            state.list = [];
-        },
         deleteEmployee: (state, action) => {
             // Supprimer l'employé avec l'ID spécifié
-            state.list = state.list.filter(employee => employee.id !== action.payload);
+            state.list = state.list.filter(employee => employee.id !== action.payload.id);
+        },
+        clearEmployees: state => {
+            state.list = [];
         },
     },
 });
 
-export const { addEmployee, clearEmployees,deleteEmployee  } = employeesSlice.actions;
+export const { addEmployee, clearEmployees, deleteEmployee } = employeesSlice.actions;
 export default employeesSlice.reducer;
