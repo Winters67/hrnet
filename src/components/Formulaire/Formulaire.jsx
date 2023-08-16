@@ -10,6 +10,8 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { v4 as uuidv4 } from 'uuid';
 import Modal from '../Modal/Modal';
+import ErrorMessage from '../Error/ErrorMessage';
+import validateForm from '../utils/validateForm';
 
 
 // État initial du formulaire d'employé
@@ -42,13 +44,9 @@ const formReducer = (state, action) => {
 // Composant de formulaire d'employé
 function EmployeeForm() {
 
-    // Utilisation du useReducer pour gérer l'état du formulaire
     const [state, dispatch] = useReducer(formReducer, initialState);
-
-    // Utilisation de useDispatch pour envoyer des actions à la store Redux
+    const [errors, setErrors] = useState({});
     const reduxDispatch = useDispatch();
-
-    // État local pour contrôler l'ouverture/fermeture du modal
     const [isModalOpen, setModalOpen] = useState(false);
 
     // Gestionnaire de changements pour les champs du formulaire
@@ -74,23 +72,29 @@ function EmployeeForm() {
         });
     };
 
-  // Fonction pour enregistrer un employé
     const saveEmployee = () => {
-        // Ajouter un ID unique à l'employé
-        const employeeWithId = {
-            ...state,
-            id: uuidv4()
-        };
-        console.log(employeeWithId)
- // Dispatch l'action pour ajouter l'employé à la store Redux
-        reduxDispatch(addEmployee(employeeWithId));
-           // Ouvrir le modal de confirmation
-        setModalOpen(true);
+        const formErrors = validateForm(state);
+        setErrors(formErrors);
+
+        if (Object.keys(formErrors).length === 0) {
+            const employeeWithId = {
+                ...state,
+                id: uuidv4()
+            };
+
+            reduxDispatch(addEmployee(employeeWithId));
+            setModalOpen(true);
+        } else {
+            console.log('Form errors:', formErrors);
+        }
     };
-// Fonction pour fermer le modal
-    const closeModal = () => {
-        setModalOpen(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        saveEmployee();
     };
+
+    const closeModal = () => setModalOpen(false);
 
 
 
@@ -116,53 +120,70 @@ function EmployeeForm() {
                 <h2>Create Employee</h2>
             </div>
 
-            <form id="create-employeec" onSubmit={(e) => e.preventDefault()}>
-                <InputField
-                    name="firstName"
-                    value={state.firstName}
-                    onChange={handleChange}
-                    label="First Name"
-                />
+            <form id="create-employeec" onSubmit={(e) => handleSubmit}>
+                <div className='inputContainer'>
+                    <InputField
+                        name="firstName"
+                        value={state.firstName}
+                        onChange={handleChange}
+                        label="First Name"
+                    />
+                    <ErrorMessage errors={errors} field="firstName" />
+                </div>
+                <div className='inputContainer'>
+                    <InputField
+                        name="lastName"
+                        value={state.lastName}
+                        onChange={handleChange}
+                        label="Last Name"
+                    />
+                    <ErrorMessage errors={errors} field="lastName" />
+                </div>
+                <div className='inputContainer'>
+                    <DatePicker
+                        selected={state.dateOfBirth ? new Date(state.dateOfBirth) : null}
+                        onChange={date => handleChange({ target: { name: "dateOfBirth", value: date } })}
+                        dateFormat="yyyy-MM-dd"
+                        customInput={<InputField label="Date of Birth" />}
+                    />
+                    <ErrorMessage errors={errors} field="dateOfBirth" />
+                </div>
+                <div className='inputContainer'>
+                    <DatePicker
+                        selected={state.startDate ? new Date(state.startDate) : null}
+                        onChange={date => handleChange({ target: { name: "startDate", value: date } })}
+                        dateFormat="yyyy-MM-dd"
+                        customInput={<InputField label="Start Date" />}
 
-                <InputField
-                    name="lastName"
-                    value={state.lastName}
-                    onChange={handleChange}
-                    label="Last Name"
-                />
-
-                <DatePicker
-                    selected={state.dateOfBirth ? new Date(state.dateOfBirth) : null}
-                    onChange={date => handleChange({ target: { name: "dateOfBirth", value: date } })}
-                    dateFormat="yyyy-MM-dd"
-                    customInput={<InputField label="Date of Birth" />}
-                />
-
-                <DatePicker
-                    selected={state.startDate ? new Date(state.startDate) : null}
-                    onChange={date => handleChange({ target: { name: "startDate", value: date } })}
-                    dateFormat="yyyy-MM-dd"
-                    customInput={<InputField label="Start Date" />}
-                />
+                    />
+                    <ErrorMessage errors={errors} field="startDate" />
+                </div>
 
 
 
                 <fieldset className="address">
                     <legend>Address</legend>
 
-                    <InputField
-                        name="street"
-                        value={state.street}
-                        onChange={handleChange}
-                        label="Street"
-                    />
+                    <div className='inputContainer'>
+                        <InputField
+                            name="street"
+                            value={state.street}
+                            onChange={handleChange}
+                            label="Street"
+                        />
+                        <ErrorMessage errors={errors} field="street" />
+                    </div>
 
-                    <InputField
-                        name="city"
-                        value={state.city}
-                        onChange={handleChange}
-                        label="City"
-                    />
+                    <div className='inputContainer'>
+                        <InputField
+                            name="city"
+                            value={state.city}
+                            onChange={handleChange}
+                            label="City"
+                        />
+                        <ErrorMessage errors={errors} field="city" />
+                    </div>
+
                     <div className='dropdown'>
                         <label htmlFor="state">State</label>
                         <Dropdown
@@ -181,8 +202,9 @@ function EmployeeForm() {
                         value={state.zipCode}
                         onChange={handleChange}
                         label="Zip Code"
-
                     />
+                    <ErrorMessage errors={errors} field="zipCode" />
+
                 </fieldset>
                 <div className='dropdown'>
                     <label htmlFor="department">Department</label>
@@ -197,7 +219,7 @@ function EmployeeForm() {
 
 
                 <button className='buttonSave' type="button" onClick={saveEmployee}>Save</button>
-            <Modal isOpen={isModalOpen} onClose={closeModal} />
+                <Modal isOpen={isModalOpen} onClose={closeModal} />
             </form>
         </div>
     );
