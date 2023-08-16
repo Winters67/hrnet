@@ -8,7 +8,7 @@ import "./EmployeList.scss"
 function EmployeeList() {
     const dispatch = useDispatch();
     const employees = useSelector(state => state.employees.list);
-    console.log(employees)
+
 
     const handleDelete = (employeeId) => {
         dispatch(deleteEmployee({ id: employeeId }));
@@ -50,7 +50,6 @@ function EmployeeList() {
                 enableRowActions
                 renderRowActionMenuItems={({ row }) => [
                     <MenuItem key="delete" onClick={() => {
-                        console.log(row.original); // Print the 'original' object to see its structure
                         handleDelete(row.original.id);
                     }}>
                         Delete

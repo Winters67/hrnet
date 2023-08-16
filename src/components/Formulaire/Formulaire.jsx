@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import { addEmployee } from '../../reducers/employeesReducer';
 import { useDispatch } from 'react-redux';
 import { states } from '../../data/data';
@@ -9,10 +9,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { v4 as uuidv4 } from 'uuid';
+import Modal from '../Modal/Modal';
 
 
-// console.log(states)
-
+// État initial du formulaire d'employé
 const initialState = {
     firstName: '',
     lastName: '',
@@ -26,7 +26,7 @@ const initialState = {
 };
 
 
-
+// Reducer pour gérer les mises à jour de l'état du formulaire
 const formReducer = (state, action) => {
     switch (action.type) {
         case 'UPDATE_FIELD':
@@ -39,12 +39,19 @@ const formReducer = (state, action) => {
     }
 };
 
+// Composant de formulaire d'employé
 function EmployeeForm() {
+
+    // Utilisation du useReducer pour gérer l'état du formulaire
     const [state, dispatch] = useReducer(formReducer, initialState);
+
+    // Utilisation de useDispatch pour envoyer des actions à la store Redux
     const reduxDispatch = useDispatch();
 
+    // État local pour contrôler l'ouverture/fermeture du modal
+    const [isModalOpen, setModalOpen] = useState(false);
 
-
+    // Gestionnaire de changements pour les champs du formulaire
     const handleChange = (e) => {
         let name, value;
 
@@ -67,18 +74,27 @@ function EmployeeForm() {
         });
     };
 
+  // Fonction pour enregistrer un employé
     const saveEmployee = () => {
-        console.log(state);
-
+        // Ajouter un ID unique à l'employé
         const employeeWithId = {
             ...state,
             id: uuidv4()
         };
         console.log(employeeWithId)
-
+ // Dispatch l'action pour ajouter l'employé à la store Redux
         reduxDispatch(addEmployee(employeeWithId));
+           // Ouvrir le modal de confirmation
+        setModalOpen(true);
+    };
+// Fonction pour fermer le modal
+    const closeModal = () => {
+        setModalOpen(false);
     };
 
+
+
+    // Options pour le menu déroulant des États et des départements
     const options = states.map(s => ({ value: s.abbreviation, label: s.name }));
 
     const departmentOptions = [
@@ -88,6 +104,8 @@ function EmployeeForm() {
         { value: 'Human Resources', label: 'Human Resources' },
         { value: 'Legal', label: 'Legal' }
     ];
+
+
 
 
     return (
@@ -167,18 +185,19 @@ function EmployeeForm() {
                     />
                 </fieldset>
                 <div className='dropdown'>
-                <label htmlFor="department">Department</label>
-                <Dropdown
-                    options={departmentOptions}
-                    onChange={handleChange}
-                    value={state.department}
-                    placeholder="Select a department"
-                />
+                    <label htmlFor="department">Department</label>
+                    <Dropdown
+                        options={departmentOptions}
+                        onChange={handleChange}
+                        value={state.department}
+                        placeholder="Select a department"
+                    />
                 </div>
 
 
 
                 <button className='buttonSave' type="button" onClick={saveEmployee}>Save</button>
+            <Modal isOpen={isModalOpen} onClose={closeModal} />
             </form>
         </div>
     );
