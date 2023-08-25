@@ -43,6 +43,7 @@ form {
       @include cellInput;
       // min-width: 80%;
 
+     
       // margin: 10px;
       // transition: box-shadow 0.3s;
 
@@ -62,14 +63,15 @@ form {
 }
 
 .inputContainer {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
-.address {
+fieldset {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 30px 0px 30px;
+  padding: 20px 30px 30px 30px;
+  margin-bottom: 30px;
   border: 3px solid white;
   border-radius: 10px;
 }
@@ -91,7 +93,7 @@ form {
   }
 }
 .dropdown {
-  margin: 20px 0px 30px 0px;
+  margin: 00px 0px 30px 0px;
   @include cellInput;
   .Dropdown-control {
     border: none;

@@ -9,9 +9,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { v4 as uuidv4 } from 'uuid';
-import Modal from '../Modal/Modal';
 import ErrorMessage from '../Error/ErrorMessage';
 import validateForm from '../utils/validateForm';
+import Logo from '../../assets/img/logo_hrnet.jpg';
+import  Modal  from 'modestmodals'
 
 
 // État initial du formulaire d'employé
@@ -111,7 +112,6 @@ function EmployeeForm() {
 
 
 
-
     return (
         <div className="container">
             <div className='titleCreate'>
@@ -159,8 +159,6 @@ function EmployeeForm() {
                     <ErrorMessage errors={errors} field="startDate" />
                 </div>
 
-
-
                 <fieldset className="address">
                     <legend>Address</legend>
 
@@ -194,9 +192,6 @@ function EmployeeForm() {
                         />
                     </div>
 
-
-
-
                     <InputField
                         name="zipCode"
                         value={state.zipCode}
@@ -216,10 +211,8 @@ function EmployeeForm() {
                     />
                 </div>
 
-
-
                 <button className='buttonSave' type="button" onClick={saveEmployee}>Save</button>
-                <Modal isOpen={isModalOpen} onClose={closeModal} />
+                <Modal isOpen={isModalOpen} onClose={closeModal} title="" message="Employee Created!" logo={Logo} />
             </form>
         </div>
     );
