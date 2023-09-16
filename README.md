@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="https://hrnet.vbgwebdev.fr/static/media/logo_hrnet.0fdb55c84264a04604d5.jpg" alt="Project logo"></a>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h3 align="center">hrnet</h3>
 
-## Available Scripts
+<div align="center">
 
-In the project directory, you can run:
+</div>
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<p align="center"> Une solution complète pour la gestion des ressources humaines.
+    <br> 
+</p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📝 Table of Contents
 
-### `npm test`
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Deployment](#deployment)
+- [Usage](#usage)
+- [Built Using](#built_using)
+- [Authors](#authors)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🧐 About <a name = "about"></a>
 
-### `npm run build`
+À l'ère de la digitalisation rapide, il est crucial pour WealthHealth de rester à la pointe de la technologie. L'une de nos plus grandes initiatives cette année est la refonte de notre application interne, HRnet. Aujourd'hui, nous sommes ravis de vous présenter notre vision de la transition de HRnet depuis une base technologique jQuery vers une solution plus robuste et moderne avec React.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[![Made-with-Javascript](https://img.shields.io/badge/Made%20with-Javascript-green)](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+[![React](https://img.shields.io/badge/React-v18.2.0-blue)](https://fr.reactjs.org/)
+[![React-DOM](https://img.shields.io/badge/React--DOM-v18.2.0-blue)](https://fr.reactjs.org/)
+[![React-Router-DOM](https://img.shields.io/badge/React--Router--DOM-v6.14.2-yellow)](https://reactrouter.com/docs/en/v6)
+[![React-Scripts](https://img.shields.io/badge/React--Scripts-v5.0.1-orange)](https://www.npmjs.com/package/react-scripts)
+[![Sass](https://img.shields.io/badge/Sass-v1.64.2-ff69b4)](https://sass-lang.com/)
+[![@reduxjs/toolkit](https://img.shields.io/badge/%40reduxjs%2Ftoolkit-v1.9.5-blue)](https://www.npmjs.com/package/@reduxjs/toolkit)
+[![material-react-table](https://img.shields.io/badge/material--react--table-1.14.0-cyan)]()
+[![modestmodals](https://img.shields.io/badge/modestmodals-1.0.1-blueviolet)]()
+[![react-dropdown](https://img.shields.io/badge/react--dropdown-1.11.0-yellowgreen)]()
+[![react-datepicker](https://img.shields.io/badge/react--datepicker-4.16.0-darkorange)]()
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🏁 Getting Started <a name = "getting_started"></a>
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Node.js
+- npm
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installez les dépendances :
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Pour lancer l'application en mode développement :
 
-## Learn More
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+🚀 Deployment <a name = "deployment"></a>
+[Instructions de déploiement si vous en avez.]
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+⛏️ Built Using <a name = "built_using"></a>
+React - Web Framework
+Redux - State Management
+Sass - Styling
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+✍️ Authors <a name = "authors"></a>
+@Winters67 - Development and Implementation
